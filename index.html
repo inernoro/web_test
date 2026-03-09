@@ -3,177 +3,298 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cursor 学习步骤（单页面）</title>
+    <title>Cursor 学习地图（单页面）</title>
     <style>
       :root {
-        --bg: #0b1020;
-        --card: #121a2f;
-        --text: #e8ecff;
-        --sub: #a9b3d9;
-        --primary: #6ea8fe;
-        --ok: #6dd3a0;
+        --bg: #f4f8ff;
+        --bg-accent: #e9f1ff;
+        --card: rgba(255, 255, 255, 0.85);
+        --line: #d8e3ff;
+        --text: #1f2a44;
+        --muted: #5e6c90;
+        --primary: #4f6bff;
+        --primary-soft: #ebefff;
+        --success: #157f5a;
       }
+
       * {
         box-sizing: border-box;
       }
+
       body {
         margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
-          "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-        background: linear-gradient(180deg, #080c18 0%, #0b1020 100%);
         color: var(--text);
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
+          "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
         line-height: 1.7;
+        background:
+          radial-gradient(circle at 15% 15%, #d9e7ff 0%, transparent 42%),
+          radial-gradient(circle at 90% 0%, #e9dcff 0%, transparent 30%),
+          linear-gradient(180deg, var(--bg) 0%, #ffffff 100%);
       }
+
       .container {
-        max-width: 900px;
+        width: min(1080px, 92vw);
         margin: 0 auto;
-        padding: 32px 20px 64px;
+        padding: 40px 0 64px;
       }
+
       .hero {
-        background: rgba(18, 26, 47, 0.9);
-        border: 1px solid #26345d;
-        border-radius: 16px;
-        padding: 24px;
-        margin-bottom: 20px;
+        background: linear-gradient(135deg, #ffffff 0%, #eef3ff 100%);
+        border: 1px solid #d6e2ff;
+        border-radius: 22px;
+        padding: 32px;
+        box-shadow: 0 20px 40px rgba(38, 60, 122, 0.12);
+        margin-bottom: 26px;
       }
-      h1,
-      h2 {
-        margin: 0 0 12px;
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid #cfdcff;
+        background: #f8faff;
+        color: #41558f;
+        border-radius: 999px;
+        padding: 4px 12px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
       }
+
       h1 {
-        font-size: 30px;
+        margin: 14px 0 12px;
+        font-size: clamp(30px, 4vw, 44px);
+        line-height: 1.2;
       }
-      h2 {
-        font-size: 22px;
+
+      .hero p {
+        margin: 0;
+        color: var(--muted);
+        max-width: 760px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 22px;
+      }
+
+      .metric {
+        background: rgba(255, 255, 255, 0.72);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 14px 16px;
+      }
+
+      .metric strong {
+        display: block;
+        font-size: 24px;
         color: var(--primary);
+        line-height: 1.2;
       }
-      p,
-      li {
-        color: var(--sub);
+
+      .metric span {
+        font-size: 13px;
+        color: var(--muted);
       }
-      .grid {
+
+      .timeline {
+        position: relative;
         display: grid;
         gap: 16px;
       }
-      .card {
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 16px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(180deg, #9eb2ff 0%, #c9d7ff 100%);
+      }
+
+      .step {
+        position: relative;
         background: var(--card);
-        border: 1px solid #223157;
-        border-radius: 14px;
-        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 18px 18px 18px 54px;
+        box-shadow: 0 10px 25px rgba(25, 49, 110, 0.08);
       }
-      .tag {
-        display: inline-block;
-        background: #1b2750;
-        color: #bed2ff;
-        border: 1px solid #334d91;
-        border-radius: 999px;
-        padding: 2px 10px;
-        font-size: 12px;
-        margin-bottom: 8px;
+
+      .step-index {
+        position: absolute;
+        left: 2px;
+        top: 18px;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 2px solid #b8c7ff;
+        background: #f2f6ff;
+        color: #344dad;
+        font-weight: 700;
+        font-size: 13px;
+        display: grid;
+        place-items: center;
       }
+
+      .step h2 {
+        margin: 0 0 10px;
+        font-size: 22px;
+        line-height: 1.3;
+      }
+
+      .step ul {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--muted);
+      }
+
+      .step li + li {
+        margin-top: 6px;
+      }
+
       .summary {
-        border-left: 4px solid var(--ok);
+        margin-top: 18px;
+        border: 1px solid #b7dfcb;
+        background: linear-gradient(135deg, #ffffff 0%, #ecfff5 100%);
       }
+
+      .summary h2 {
+        color: var(--success);
+      }
+
+      .summary p {
+        margin: 10px 0 0;
+        color: #2f5f4a;
+      }
+
       code {
-        background: #1a2442;
-        border: 1px solid #2f4173;
-        border-radius: 6px;
+        background: var(--primary-soft);
+        border: 1px solid #c8d5ff;
         padding: 2px 6px;
-        color: #d8e5ff;
+        border-radius: 6px;
+        font-size: 0.92em;
       }
-      a {
-        color: #9ec1ff;
+
+      @media (max-width: 760px) {
+        .hero {
+          padding: 24px 18px;
+        }
+
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .step {
+          padding-right: 14px;
+        }
       }
     </style>
   </head>
   <body>
     <main class="container">
       <section class="hero">
+        <div class="eyebrow">Cursor Learning Roadmap</div>
         <h1>Cursor 学习步骤（单页面）</h1>
         <p>
-          目标：用 7 个步骤快速掌握 Cursor 的核心工作流，做到「能提需求、能读代码、能改代码、能验证结果」。
+          用 7 个步骤快速建立实战能力：能提需求、能读代码、能改代码、能验证结果。每一步都聚焦“行动 + 产出”，不走空话路线。
         </p>
+        <div class="hero-grid">
+          <div class="metric">
+            <strong>7</strong>
+            <span>核心学习步骤</span>
+          </div>
+          <div class="metric">
+            <strong>30-60</strong>
+            <span>分钟/次练习建议</span>
+          </div>
+          <div class="metric">
+            <strong>分析→修改→验证</strong>
+            <span>标准闭环工作流</span>
+          </div>
+        </div>
       </section>
 
-      <section class="grid">
-        <article class="card">
-          <span class="tag">Step 1</span>
+      <section class="timeline">
+        <article class="step">
+          <div class="step-index">1</div>
           <h2>熟悉界面与基础操作</h2>
           <ul>
-            <li>认识 Chat、Composer、Terminal 面板。</li>
-            <li>掌握快捷键：打开命令面板、定位文件、查看变更。</li>
-            <li>先在小仓库里练习，降低学习负担。</li>
+            <li>认识 Chat、Composer、Terminal 面板，知道各自职责。</li>
+            <li>掌握常用快捷键：定位文件、查找符号、查看变更。</li>
+            <li>在小项目练习，先建立“可控感”再进阶。</li>
           </ul>
         </article>
 
-        <article class="card">
-          <span class="tag">Step 2</span>
+        <article class="step">
+          <div class="step-index">2</div>
           <h2>学会提“可执行”的需求</h2>
           <ul>
-            <li>需求描述建议包含：目标、范围、约束、验收标准。</li>
-            <li>示例：<code>请新增登录页，保留现有 API，不改数据库结构</code>。</li>
-            <li>描述越清晰，AI 返回越稳定。</li>
+            <li>需求模板：背景 + 目标 + 范围 + 约束 + 验收标准。</li>
+            <li>例如：<code>新增登录页，复用现有 API，不改数据库结构</code>。</li>
+            <li>结论先行、约束明确，AI 输出更稳定。</li>
           </ul>
         </article>
 
-        <article class="card">
-          <span class="tag">Step 3</span>
-          <h2>让 AI 先探索，再动手</h2>
+        <article class="step">
+          <div class="step-index">3</div>
+          <h2>先探索上下文，再实施修改</h2>
           <ul>
-            <li>先让它总结项目结构、关键模块与入口文件。</li>
-            <li>确认它理解正确后，再要求实施修改。</li>
-            <li>先小改、再扩大范围，避免一次改太多。</li>
+            <li>先让 AI 说明项目结构、入口文件、关键依赖。</li>
+            <li>确认理解一致后再开始改代码，减少返工。</li>
+            <li>小步快跑：一次只做一个可验证目标。</li>
           </ul>
         </article>
 
-        <article class="card">
-          <span class="tag">Step 4</span>
-          <h2>分步骤迭代修改代码</h2>
+        <article class="step">
+          <div class="step-index">4</div>
+          <h2>按任务拆解迭代推进</h2>
           <ul>
-            <li>把任务拆成：新增文件、修改逻辑、补测试、修文档。</li>
-            <li>每步都要求“说明改动点 + 风险点”。</li>
-            <li>复杂任务建议让 AI 先输出执行计划。</li>
+            <li>拆分为：页面结构、样式系统、功能逻辑、测试验证。</li>
+            <li>每轮都要求输出“改动点 + 风险点 + 回滚思路”。</li>
+            <li>复杂需求先出计划，再按计划执行。</li>
           </ul>
         </article>
 
-        <article class="card">
-          <span class="tag">Step 5</span>
-          <h2>用命令验证产出</h2>
+        <article class="step">
+          <div class="step-index">5</div>
+          <h2>强制执行验证流程</h2>
           <ul>
-            <li>运行测试、构建、lint，确保改动可用。</li>
-            <li>要求 AI 给出失败原因和最小修复方案。</li>
-            <li>坚持“修改后必验证”的习惯。</li>
+            <li>改动后必须跑测试、构建、静态检查（lint/type check）。</li>
+            <li>失败时让 AI 解释根因，不只给表面修补。</li>
+            <li>形成“先验证，再提交”的工程纪律。</li>
           </ul>
         </article>
 
-        <article class="card">
-          <span class="tag">Step 6</span>
-          <h2>学习高质量 Prompt 模板</h2>
+        <article class="step">
+          <div class="step-index">6</div>
+          <h2>沉淀高复用 Prompt 模板</h2>
           <ul>
-            <li>模板结构：背景 + 目标 + 限制 + 输出格式。</li>
-            <li>可复用模板能显著提高效率。</li>
-            <li>把常用模板沉淀到团队 wiki 或 README。</li>
+            <li>把高质量提问沉淀成模板，复用到下一次任务。</li>
+            <li>保持输出格式一致（例如：变更列表、测试结果、风险点）。</li>
+            <li>把模板放进 README 或团队文档，降低协作成本。</li>
           </ul>
         </article>
 
-        <article class="card">
-          <span class="tag">Step 7</span>
-          <h2>形成个人工作流</h2>
+        <article class="step">
+          <div class="step-index">7</div>
+          <h2>形成个人稳定工作流</h2>
           <ul>
-            <li>固定流程：分析 → 修改 → 测试 → 提交。</li>
-            <li>对关键改动保留提交说明，方便回溯。</li>
-            <li>持续复盘“哪些提问更有效”。</li>
+            <li>固定流程：分析需求 → 浏览代码 → 实施改动 → 自动验证 → 提交。</li>
+            <li>关键变更写清 commit message，方便回溯与复盘。</li>
+            <li>周期复盘：哪些提问方式最省时、最准确。</li>
           </ul>
         </article>
 
-        <article class="card summary">
-          <span class="tag">学习总结</span>
-          <h2>结论：Cursor 是“提效器”，不是“替代思考器”</h2>
+        <article class="step summary">
+          <div class="step-index">✓</div>
+          <h2>学习总结</h2>
           <p>
-            想学好 Cursor，关键不是“让它一次写完所有代码”，而是把任务结构化、把验证流程标准化。你负责定义方向与质量标准，Cursor 负责加速实现过程。长期来看，最有价值的能力是：把模糊需求转成清晰指令，并能快速验证结果正确性。
-          </p>
-          <p>
-            下一步建议：把本页部署到 GitHub Pages，形成你自己的公开学习笔记页面。
+            Cursor 的核心价值是“把正确流程放大”，而不是“替你省略思考”。当你能把模糊需求转成结构化指令，并坚持验证闭环，效率和质量会同时提升。建议你把这个页面作为个人学习看板，持续更新自己的实战经验。
           </p>
         </article>
       </section>

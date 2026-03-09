@@ -33,3 +33,27 @@
 - 修改 `index.html` 内容后再次 push，页面会自动更新。
 - 如果仓库名变化，访问地址也会变化：`/<新仓库名>/`。
 - 如果是用户主页仓库 `<username>.github.io`，地址将是根域名（不带仓库路径）。
+
+## UI/UX Pro Max Skill 安装与使用（Cursor）
+
+已按你要求执行安装（当前仓库已生成 `.cursor/skills/ui-ux-pro-max`）：
+
+```bash
+npm install -g uipro-cli
+uipro init --ai cursor
+```
+
+你本地也可以这样配置：
+
+1. 安装 Node.js（建议 LTS）。
+2. 执行上面两条命令。
+3. 重启 Cursor。
+4. 在对话里直接说：
+   - `请帮我重做这个页面的 UI/UX`
+   - `基于现代 SaaS 风格优化视觉层次和可读性`
+
+更新技能版本：
+
+```bash
+uipro update
+```
